@@ -11,6 +11,18 @@ interface JobRowProps {
   onToggle: () => void;
 }
 
+// Utility function to convert **text** to JSX with bold styling
+function renderTextWithBold(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const boldText = part.slice(2, -2);
+      return <strong key={index} className="font-semibold">{boldText}</strong>;
+    }
+    return part;
+  });
+}
+
 export function JobRow({ job, isExpanded, onToggle }: JobRowProps) {
   return (
     <div className="border border-border rounded-lg bg-card">
@@ -36,7 +48,7 @@ export function JobRow({ job, isExpanded, onToggle }: JobRowProps) {
               <Target className="h-5 w-5 text-primary" />
               <h4 className="font-semibold text-foreground">معرفی دوره</h4>
             </div>
-            <p className="text-muted-foreground leading-relaxed">{job.pitch}</p>
+            <p className="text-muted-foreground leading-relaxed">{renderTextWithBold(job.pitch)}</p>
           </div>
 
           {/* ChatGPT Use Cases */}
@@ -49,7 +61,7 @@ export function JobRow({ job, isExpanded, onToggle }: JobRowProps) {
               {job.chatgptUseCases.map((useCase, index) => (
                 <li key={index} className="text-muted-foreground flex items-start gap-2">
                   <span className="text-accent font-medium">{index + 1}.</span>
-                  <span>{useCase}</span>
+                  <span>{renderTextWithBold(useCase)}</span>
                 </li>
               ))}
             </ul>
@@ -65,7 +77,7 @@ export function JobRow({ job, isExpanded, onToggle }: JobRowProps) {
               {job.readyPrompts.map((prompt, index) => (
                 <Card key={index} className="bg-secondary/30">
                   <CardContent className="p-4">
-                    <p className="text-sm text-foreground">{prompt}</p>
+                    <p className="text-sm text-foreground">{renderTextWithBold(prompt)}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -80,7 +92,7 @@ export function JobRow({ job, isExpanded, onToggle }: JobRowProps) {
             </div>
             <Card className="bg-accent/10 border-accent/20">
               <CardContent className="p-4">
-                <p className="text-foreground">{job.miniAutomation}</p>
+                <p className="text-foreground">{renderTextWithBold(job.miniAutomation)}</p>
               </CardContent>
             </Card>
           </div>
@@ -95,7 +107,7 @@ export function JobRow({ job, isExpanded, onToggle }: JobRowProps) {
               {job.measurableKPIs.map((kpi, index) => (
                 <Card key={index} className="bg-primary/5 border-primary/20">
                   <CardContent className="p-4">
-                    <p className="text-sm text-foreground font-medium">{kpi}</p>
+                    <p className="text-sm text-foreground font-medium">{renderTextWithBold(kpi)}</p>
                   </CardContent>
                 </Card>
               ))}

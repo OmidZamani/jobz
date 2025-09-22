@@ -28,7 +28,7 @@
   --input: oklch(1.00 0 0);
   --ring: oklch(0.00 0 0);
   --radius: 0rem;
-  --font-sans: Inter;
+  --font-sans: Vazir;
   --font-serif: PT Serif;
   --font-mono: Roboto Mono;
   --chart-1: oklch(0.00 0 0);
@@ -68,6 +68,6 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Vazir', system-ui, -apple-system, sans-serif;
   }
 }
